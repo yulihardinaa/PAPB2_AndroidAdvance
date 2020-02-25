@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/sky"
+    android:padding="@dimen/widget_margin"
+
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/DateWidget">
+    <TextView
+        android:id="@+id/appwidget_time1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:paddingTop="30dp"
+        android:contentDescription="@string/appwidget_text"
+        android:text="TIME"
+        android:textColor="#ffffff"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/appwidget_date1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_below="@+id/appwidget_time1"
+        android:text="XXXXX"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+
+        />
+</LinearLayout>
+
+</RelativeLayout>

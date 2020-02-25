@@ -65,11 +65,40 @@
             />
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/section_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/section_update"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        style="@style/AppWidgetSection"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Today:"
+            style="@style/AppWidgetLabel"
+            />
+        <TextView
+            android:id="@+id/appwidget_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="XX"
+            style="@style/AppWidgetText"
+            />
+
+    </LinearLayout>
     <Button
         android:id="@+id/button_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/section_update"
+        android:layout_below="@+id/section_date"
         android:layout_centerHorizontal="true"
         android:text="UPDATE NOW"
         />
