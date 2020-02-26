@@ -1,5 +1,6 @@
 package sv.ugm.komsi.broadcastreceiverb;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -55,8 +56,27 @@ public class AppWidget1 extends AppWidgetProvider {
         PendingIntent pendingUpdate =PendingIntent.getBroadcast(context,
                 appWidgetId,intentUpdate, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Intent intent = new Intent(context,MainActivity.class);
+        PendingIntent pendingIntent=PendingIntent.getActivity(context,0,intent,0);
+
+        views.setOnClickPendingIntent(R.id.button_home,pendingIntent);
+
         views.setOnClickPendingIntent(R.id.button_update, pendingUpdate);
         // Instruct the widget manager to update the widget
+
+        //dynamic calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.MINUTE,calendar.get(Calendar.MINUTE)+1);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+
+        AlarmManager alarmManager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC,
+                calendar.getTimeInMillis(),
+                60*1000,pendingUpdate);
+
+
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 

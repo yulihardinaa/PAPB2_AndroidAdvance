@@ -1,12 +1,14 @@
 package sv.ugm.komsi.broadcastreceiverb;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
 import android.os.Build;
 import android.widget.RemoteViews;
 
@@ -58,7 +60,19 @@ public class DateWidgetB extends AppWidgetProvider {
         PendingIntent pendingUpdate =PendingIntent.getBroadcast(context,
                 appWidgetId,intentUpdate, PendingIntent.FLAG_UPDATE_CURRENT);
 
+
         views.setOnClickPendingIntent(R.id.button_update, pendingUpdate);
+
+        Calendar time = Calendar.getInstance();
+        time.setTimeInMillis(System.currentTimeMillis());
+        time.set(Calendar.MINUTE,time.get(Calendar.MINUTE)+1);
+        time.set(Calendar.SECOND,0);
+        time.set(Calendar.MILLISECOND,0);
+
+        AlarmManager alarmManager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC,
+                time.getTimeInMillis(),
+                60*1000,pendingUpdate);
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
